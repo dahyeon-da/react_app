@@ -1,6 +1,8 @@
-~ React Study ~
-
 <div align=center><h1>📚 STACKS</h1></div>
+
+<div align=center>
+  <a href="https://ldhyeon.tistory.com/"><img src="https://img.shields.io/badge/Tistory-20C997?style=flat-square&logo=Velog&logoColor=white"/></a>
+</div>
 
 <div align=center>
   <img src="https://img.shields.io/badge/react-339AF0?style=for-the-badge&logo=react&logoColor=white"> 
