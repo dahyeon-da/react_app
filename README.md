@@ -1,4 +1,4 @@
-<div align=center><h1>📲 **SNS & BLOG** 📲</h1></div>
+<div align=center><h1>📖 BLOG 📖</h1></div>
 <div align=center>
   <a href="https://ldhyeon.tistory.com/"><img src="https://img.shields.io/badge/Tistory-20C997?style=flat-square&logo=Velog&logoColor=white"/></a>
 </div>
