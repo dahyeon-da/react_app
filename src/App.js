@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TOC from "./components/TOC";
 import Content from "./components/Content";
 import Subject from "./components/Subject";
+import Control from "./components/Control";
 import './App.css';
 
 class App extends Component {
@@ -48,15 +49,24 @@ class App extends Component {
         >
         </Subject>
         <TOC
-          onChangePage={function(id) {
-            this.setState({ 
+          onChangePage={function (id) {
+            this.setState({
               mode: 'read',
-              selected_content_id:Number(id)
+              selected_content_id: Number(id)
             });
           }.bind(this)}
           data={this.state.contents}
         ></TOC>
-        <Content title={_title} desc={_desc}></Content>
+        <Control onChangeMode={function (_mode) {
+          this.setState({
+            mode: _mode
+          });
+        }.bind(this)}>
+        </Control>
+        <Content
+          title={_title}
+          desc={_desc}
+        ></Content>
       </div>
     );
   }

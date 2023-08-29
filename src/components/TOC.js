@@ -8,10 +8,10 @@ class TOC extends Component {
     while (i < data.length) {
       lists.push(
         <li key={data[i].id}>
-          <a 
-          href={"/content/" + data[i].id}
-          data-id = {data[i].id}  // 현재 데이터의 id 값을 data-id에 넣어준다. 
-          onClick={function(e){
+          <a
+            href={"/content/" + data[i].id}
+            data-id={data[i].id}  // 현재 데이터의 id 값을 data-id에 넣어준다. 
+            onClick={function (e) {
               // e.target 
               // 여기서 target는 이벤트가 발생한 태그를 말한다. 따라서 여기서는 클릭된 a 태그를 뜻한다.
               // e.target.dataset.id
