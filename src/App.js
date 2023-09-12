@@ -1,9 +1,9 @@
 import React from 'react';
-import MultiInput from './qoffhvjxm/MultiInput';
+import UseRef from './qoffhvjxm/UseRef';
 
 function App() {
   return (
-    <MultiInput></MultiInput>
+    <UseRef></UseRef>
   );
 }
 
