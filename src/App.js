@@ -1,67 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import UserList from './qoffhvjxm/UserList';
-import CreateUser from './qoffhvjxm/CreateUser';
 
 function App() {
-  const [inputs, setInputs] = useState({
-    username: '',
-    email: ''
-  });
-  const { username, email } = inputs;
-  const onChange = e => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value
-    });
-  }
-
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      username: 'dndhk',
-      email: 'dndhk@gmail.com'
-    }, {
-      id: 2,
-      username: 'Lee',
-      email: 'Lee@gmail.com '
-    }, {
-      id: 3,
-      username: 'dada',
-      email: 'dada@gmail.com'
-    }
-  ]);
-
-  const nextId = useRef(4);
-  const onCreate = () => {
-    // 
-    const user = {
-      id: nextId.current,
-      username, 
-      email
-    };
-    setUsers([...users, user]);
-    // 
-    setInputs({
-      username: '',
-      email: ''
-    });
-    nextId.current += 1;
-  };
-
   return (
-    <>
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      ></CreateUser>
-      <UserList users={users}></UserList>
-    </>
+    <UserList>
+    </UserList>
   );
 }
-
 export default App;
 
 // import TOC from "./components/TOC"
