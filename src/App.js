@@ -20,15 +20,18 @@ function App() {
     {
       id: 1,
       username: 'dndhk',
-      email: 'dndhk@gmail.com'
+      email: 'dndhk@gmail.com',
+      active: true
     }, {
       id: 2,
       username: 'Lee',
-      email: 'Lee@gmail.com '
+      email: 'Lee@gmail.com',
+      active: true
     }, {
       id: 3,
       username: 'dada',
-      email: 'dada@gmail.com'
+      email: 'dada@gmail.com',
+      active: true
     }
   ]);
 
@@ -47,9 +50,17 @@ function App() {
     nextId.current += 1;
   };
 
-  // 
   const onRemove = ( id ) => {
     setUsers(users.filter(user => user.id !== id));
+  };
+
+  // 
+  const onToggle = id => {
+    setUsers(
+      users.map(user =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
   };
   // 
 
@@ -61,8 +72,8 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       ></CreateUser>
-      {/* onRemove를 추가해준다. */}
-      <UserList users={users} onRemove={onRemove}></UserList>
+      {/* onToggle 추가 */}
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle}></UserList>
     </>
   );
 }
