@@ -1,8 +1,8 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import UserList from './qoffhvjxm/UserList';
 import CreateUser from './qoffhvjxm/CreateUser';
 
-function countActiveUsers (users) {
+function countActiveUsers(users) {
   console.log("활성 사용자 수를 세는중..");
   return users.filter(user => user.active).length;
 }
@@ -13,13 +13,18 @@ function App() {
     email: ''
   });
   const { username, email } = inputs;
-  const onChange = e => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value
+
+  // useCallback 함수 사용하기
+  const onChange = useCallback(
+    e => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value
+      }, [inputs]
+      );
     });
-  }
+  // 
 
   const [users, setUsers] = useState([
     {
@@ -41,33 +46,43 @@ function App() {
   ]);
 
   const nextId = useRef(4);
-  const onCreate = () => {
-    const user = {
-      id: nextId.current,
-      username, 
-      email
-    };
-    setUsers([...users, user]);
-    setInputs({
-      username: '',
-      email: ''
-    });
-    nextId.current += 1;
-  };
 
-  const onRemove = ( id ) => {
-    setUsers(users.filter(user => user.id !== id));
-  };
+  // useCallback 함수 사용하기
+  const onCreate = useCallback(
+    () => {
+      const user = {
+        id: nextId.current,
+        username,
+        email
+      };
+      setUsers([...users, user]);
+      setInputs({
+        username: '',
+        email: ''
+      });
+      nextId.current += 1;
+    }, [users, username, email]
+  );
+  // 
 
-  const onToggle = id => {
-    setUsers(
-      users.map(user =>
-        user.id === id ? { ...user, active: !user.active } : user
-      )
-    );
-  };
-  
-  // useMemo를 이용한 count 변수 생성
+  const onRemove = useCallback(
+    (id) => {
+      setUsers(users.filter(user => user.id !== id));
+    }, [users]
+  );
+
+  // useCallback 함수 사용하기
+  const onToggle = useCallback(
+    id => {
+      setUsers(
+        users.map(user =>
+          user.id === id ? { ...user, active: !user.active } : user
+        )
+      );
+    }, [users]
+  );
+  // 
+
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
     <>
