@@ -14,17 +14,15 @@ function App() {
   });
   const { username, email } = inputs;
 
-  // useCallback 함수 사용하기
-  const onChange = useCallback(
-    e => {
+  const onChange = useCallback(e => 
+    {
       const { name, value } = e.target;
-      setInputs({
+      setInputs(inputs => ({
         ...inputs,
         [name]: value
-      }, [inputs]
-      );
-    });
-  // 
+      }));
+    }, []);
+  // deps에서 inputs를 빼준다.
 
   const [users, setUsers] = useState([
     {
@@ -47,7 +45,6 @@ function App() {
 
   const nextId = useRef(4);
 
-  // useCallback 함수 사용하기
   const onCreate = useCallback(
     () => {
       const user = {
@@ -61,17 +58,17 @@ function App() {
         email: ''
       });
       nextId.current += 1;
-    }, [users, username, email]
+    }, [username, email]
+    // deps에서 users를 빼준다.
   );
-  // 
 
   const onRemove = useCallback(
     (id) => {
       setUsers(users.filter(user => user.id !== id));
-    }, [users]
+    }, []
+    // deps에서 users를 빼준다.
   );
 
-  // useCallback 함수 사용하기
   const onToggle = useCallback(
     id => {
       setUsers(
@@ -81,7 +78,6 @@ function App() {
       );
     }, [users]
   );
-  // 
 
   const count = useMemo(() => countActiveUsers(users), [users]);
   return (
