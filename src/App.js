@@ -1,6 +1,7 @@
 import React, { useRef, useReducer, useMemo, useCallback } from 'react';
 import UserList from './qoffhvjxm/UserList';
 import CreateUser from './qoffhvjxm/CreateUser';
+import useInputs from './hooks/useInputs';
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -72,18 +73,14 @@ function App() {
   const nextId = useRef(4);
 
   const { users } = state;
-  const { username, email } = state.inputs;
 
-  const onChange = useCallback(e => {
-    const { name, value } = e.target;
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name,
-      value
-    });
-  }, []);
+  // 원래 있던 inputs를 useInputs로 대체.
+  // const { username, email } = state.inputs;
+  const [{ username, email }, onChange, reset] = useInputs({
+    username: '',
+    email: ''
+  });
 
-  // onCreate, onToggle, onRemove 함수 추가.
   const onCreate = useCallback(() => {
     dispatch({
       type: 'CREATE_USER',
@@ -111,6 +108,7 @@ function App() {
   }, []);
 
   const count = useMemo(() => countActiveUsers(users), [users]);
+  
   return (
     <>
       <CreateUser
