@@ -41,13 +41,3 @@ function UserList({ users }) {
 }
 
 export default React.memo(UserList);
-
-const num = {
-  a: 1,
-  b: 2
-};
-
-const nextNum = {
-  ...object,
-  b: 3
-};
